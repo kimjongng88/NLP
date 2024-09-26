@@ -1,0 +1,27 @@
+2
+a:
+
+I attended lectures in the NLP class
+
+Stack                                            Buffer                                                  New dependency             Transition  
+[ROOT]                                           [I, attended, lectures, in, the, NLP, class]                                       Initial Configuration
+[ROOT, I]                                        [attended, lectures, in, the, NLP, class]                                          SHIFT
+[ROOT, I, attended]                              [lectures, in, the, NLP, class]                                                    SHIFT
+[ROOT, attended]                                 [lectures, in, the, NLP, class]                         attended->I                LEFT-ARC
+
+[ROOT, attended, lectures]                       [in, the, NLP, class]                                                              SHIFT                                   
+[ROOT, attended]                                 [in, the, NLP, class]                                   attended->lectures         RIGHT-ARC                               
+[ROOT, attended, in]                             [the, NLP, class]                                                                  SHIFT                                   
+[ROOT, attended, in, the]                        [NLP, class]                                                                       SHIFT                                   
+[ROOT, attended, in, the, NLP]                   [class]                                                                            SHIFT                                   
+[ROOT, attended, in, the, NLP, class]            []                                                                                 SHIFT                                   
+[ROOT, attended, in, the, class]                 []                                                      class -> NLP               LEFT-ARC     
+[ROOT, attended, the, class]                     []                                                      class -> in                LEFT-ARC                                   
+[ROOT, attended, class]                          []                                                      class -> the               LEFT-ARC                                   
+
+[ROOT, attended]                                 []                                                      attended -> class          RIGHT-ARC                                   
+[ROOT]                                           []                                                      root -> gave               RIGHT-ARC                                   
+
+
+b:
+Each word in the sentence will be added to the stack once and removed from it once. and at each iteration either one of these operations is performed. So the total number of transitions is 2n = O(n).
